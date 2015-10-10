@@ -1,6 +1,7 @@
 
 package models;
 import static com.google.common.base.MoreObjects.toStringHelper;
+
 import com.google.common.base.Objects;
 
 public class User 
@@ -33,10 +34,10 @@ public class User
     this.password = password;
   }
   
-  @Override
   public String toString()
   {
-    return toStringHelper(this).addValue(firstName)
+    return toStringHelper(this).addValue(id)
+    		                   .addValue(firstName)
                                .addValue(lastName)
                                .addValue(password)
                                .addValue(email)                               
