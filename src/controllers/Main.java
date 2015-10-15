@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.util.Collection;
+//java.util.List is unused
 import java.util.List;
 
 import models.User;
@@ -17,13 +18,6 @@ public class Main
     pacemakerAPI.createUser("Lisa",  "Simpson", "lisa@simpson.com",  "secret");
 
     Collection<User> users = pacemakerAPI.getUsers();
-    System.out.println(users);
-
-    User homer = pacemakerAPI.getUserByEmail("homer@simpson.com");
-    System.out.println(homer);
-
-    pacemakerAPI.deleteUser(homer.id);
-    users = pacemakerAPI.getUsers();
     System.out.println(users);
   }
 }
