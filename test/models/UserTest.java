@@ -33,12 +33,6 @@ public class UserTest
   }
 
   @Test
-  public void testToString()
-  {
-    assertEquals ("User{" + homer.id + ", homer, simpson, secret, homer@simpson.com}", homer.toString());
-  }
-  
-  @Test
   public void testEquals()
   {
     User homer2 = new User ("homer", "simpson", "homer@simpson.com",  "secret"); 
@@ -50,4 +44,10 @@ public class UserTest
     assertSame(homer, homer);
     assertNotSame(homer, homer2);
   }  
+  
+  @Test
+  public void testToString()
+  {
+    assertEquals ("User{" + homer.id + ", homer, simpson, secret, homer@simpson.com}", homer.toString());
+  }
 }
