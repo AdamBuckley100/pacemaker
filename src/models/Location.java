@@ -37,4 +37,5 @@ public class Location
   {  
      return Objects.hashCode(this.id, this.latitude, this.longitude);  
   } 
+  
 }
