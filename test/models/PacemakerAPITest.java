@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.common.base.Optional;
+
 import controllers.PacemakerAPI;
 import static models.Fixtures.users;
 import static models.Fixtures.activities;
