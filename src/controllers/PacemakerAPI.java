@@ -44,7 +44,7 @@ public class PacemakerAPI
     userIndex       = (Map<Long, User>)     serializer.pop();
   }
 
-  void store() throws Exception
+  public void store() throws Exception
   {
     serializer.push(userIndex);
     serializer.push(emailIndex);
@@ -114,7 +114,7 @@ public class PacemakerAPI
   }
   
   @SuppressWarnings("unchecked")
-  void load(File file) throws Exception
+  public void load(File file) throws Exception
   {
     ObjectInputStream is = null;
     try
@@ -134,7 +134,7 @@ public class PacemakerAPI
     }
   }
 
-  void store(File file) throws Exception
+  public void store(File file) throws Exception
   {
     XStream xstream = new XStream(new DomDriver());
     ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter(file));

@@ -1,4 +1,4 @@
-package models;
+package controllers;
 import controllers.PacemakerAPI;
 import static org.junit.Assert.*;
 
@@ -34,7 +34,7 @@ public class PersistenceTest
     User user2 = pacemaker.getUserByEmail(users[1].email);
     pacemaker.createActivity(user2.id, activities[2].type, activities[2].location, activities[2].distance);
     pacemaker.createActivity(user2.id, activities[3].type, activities[3].location, activities[3].distance);
-
+    
     for (Location location : locations)
     {
       pacemaker.addLocation(activity.id, location.latitude, location.longitude);
@@ -54,4 +54,36 @@ public class PersistenceTest
     Long activityID = pacemaker.getUserByEmail(users[0].email).activities.keySet().iterator().next();
     assertEquals(locations.length, pacemaker.getActivity(activityID).route.size());   
   }
-}
+  
+  @Test
+  public void testXMLSerializer() throws Exception
+  { 
+    String datastoreFile = "testdatastore.xml";
+    deleteFile (datastoreFile);
+
+    Serializer serializer = new XMLSerializer(new File (datastoreFile));
+
+    pacemaker = new PacemakerAPI(serializer); 
+    populate(pacemaker);
+    pacemaker.store();
+
+    PacemakerAPI pacemaker2 =  new PacemakerAPI(serializer);
+    pacemaker2.load();
+
+    assertEquals (pacemaker.getUsers().size(), pacemaker2.getUsers().size());
+    for (User user : pacemaker.getUsers())
+    {
+      assertTrue (pacemaker2.getUsers().contains(user));
+    }
+    deleteFile ("testdatastore.xml");
+  }
+
+  void deleteFile(String fileName)
+  {
+    File datastore = new File ("testdatastore.xml");
+    if (datastore.exists())
+    {
+      datastore.delete();
+    }
+  }
+  }
